@@ -40,26 +40,3 @@ INSERT INTO employee (first_name, last_name, manager_id, role_id)
 VALUES ("Alex", "Korjeski", 01, 2),("Arun", "Singh", 01, 2 ), ("Amanda", "Winkler", 01, 2), ("Jobie", "Daniel", 0, 1);
 
 
-
-
-
--- Below are the queries that the assignment wants us to meet
--- Add departments
-INSERT INTO department (name)
-VALUES ?;
--- Add roles
-INSERT INTO role (title, salary, department_id)
-VALUES ?;
--- Add employees
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ?;
--- View all departments
-SELECT * FROM department
--- View all roles
-SELECT * FROM role
--- View all employee
-SELECT * FROM employee
--- Update employee roles
-UPDATE employee
-SET role_id = ?
-WHERE first_name = ? & last_name = ?;

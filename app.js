@@ -64,7 +64,7 @@ function runSearch() {
                     break;
 
                 case "Update a Role":
-                    ///write function
+                    updateRole();
                     break;
                 case "exit":
                     connection.end();
@@ -84,6 +84,7 @@ function departmentSearch() {
         runSearch();
     });
 };
+
 function roleSearch() {
 
     var query = "SELECT * from role";
@@ -107,8 +108,6 @@ function employeeSearch() {
         runSearch();
     });
 };
-
-
 
 function addDepartment() {
     inquirer
@@ -197,6 +196,39 @@ function addEmployee() {
                 role_id: answer.roleID,
                 
             },
+            function (err, res) {
+                if (err) throw err;
+                runSearch();
+            });
+        });
+}
+
+function updateRole() {
+    var questions = [
+        {
+            message: "What's the NEW role_id? (1 = manager 2 = analyst, 3 = Dog Walker)",
+            type: "input",
+            name: "roleID"
+        },
+        {
+            message: "What's the employee_id?",
+            type: "input",
+            name: "employeeID"
+        },
+    ];
+    
+    inquirer
+        .prompt(questions)
+        .then(function (answer) {
+        
+            connection.query("UPDATE employee SET ? WHERE ?", 
+            [{
+                role_id: answer.roleID        
+            },
+            {
+                employee_id: answer.employeeID    
+            }],
+           
             function (err, res) {
                 if (err) throw err;
                 runSearch();
